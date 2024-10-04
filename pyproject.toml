@@ -4,6 +4,7 @@ version = "0.1"
 dependencies = [
     "PyYAML",
     "importlib-resources",
+    "nox",
 ]
 classifiers = [
     "Development Status :: 1 - Planning",

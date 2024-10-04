@@ -13,7 +13,7 @@ install: canonical-documentation
 	@. $(VENV); python -m pip install dist/canonical_documentation-0.1.tar.gz
 
 run: install
-	@. $(VENV); canonical-documentation test
+	@. $(VENV); canonical-documentation preview
 
 clean:
 	rm -r $(VENV_DIR) || true

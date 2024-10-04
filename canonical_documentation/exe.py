@@ -4,8 +4,10 @@ import argparse
 from yaml import safe_load, dump
 from importlib_resources import files
 from . import defaults
+import os
 
 from canonical_documentation.tests.main_test import run_nox
+from canonical_documentation.preview.preview import run_preview
 
 
 default_yaml = safe_load(files(defaults).joinpath('default.yaml').read_text())
@@ -37,6 +39,9 @@ def arg_parse():
     parser_test = subparsers.add_parser('test', help='run testing on a documentation set')
     parser_test.set_defaults(arg='test')
 
+    parser_test = subparsers.add_parser('preview', help='run a local preview')
+    parser_test.set_defaults(arg='preview')
+
     return parser
 
 def interactive():
@@ -59,6 +64,9 @@ def update(root):
 def test(scope):
     run_nox()
 
+def preview(cwd):
+    run_preview(cwd)
+
 def entry(argv = (), /):
 
     if not argv:
@@ -66,6 +74,8 @@ def entry(argv = (), /):
 
     parser = arg_parse()
     args = parser.parse_args(argv or sys.argv[1:])
+
+    cwd = os.getcwd()
 
     if vars(args)['arg'] == "none":
         interactive()
@@ -87,9 +97,14 @@ def entry(argv = (), /):
     elif vars(args)['arg'] == "test":
         test('x')
 
+    elif vars(args)['arg'] == "preview":
+        preview(cwd)
+
     else:
         raise Exception("Entry ARG exception, please raise an issue on GitHub.")
 
 
 if __name__ == "__main__":
+    print("DEBUG MODE ON")
+    print(sys.argv)
     entry(sys.argv[1:])
