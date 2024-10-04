@@ -2,7 +2,7 @@ import nox
 
 @nox.session
 def preview(session):
-    session.install('sphinx-autobuild')
+    session.install('sphinx-autobuild', 'canonical-sphinx', 'sphinxcontrib-svg2pdfconverter')
 
     if session.posargs:
         dir = session.posargs[0]

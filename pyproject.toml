@@ -5,6 +5,7 @@ dependencies = [
     "PyYAML",
     "importlib-resources",
     "nox",
+    "canonical-sphinx",
 ]
 classifiers = [
     "Development Status :: 1 - Planning",
