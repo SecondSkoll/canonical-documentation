@@ -5,6 +5,8 @@ from yaml import safe_load, dump
 from importlib_resources import files
 from . import defaults
 
+from canonical_documentation.tests.main_test import run_nox
+
 
 default_yaml = safe_load(files(defaults).joinpath('default.yaml').read_text())
 
@@ -55,7 +57,7 @@ def update(root):
     raise Exception("Placeholder for update function")
 
 def test(scope):
-    raise Exception("Placeholder for test function")
+    run_nox()
 
 def entry(argv = (), /):
 
@@ -83,7 +85,7 @@ def entry(argv = (), /):
         update()
 
     elif vars(args)['arg'] == "test":
-        test()
+        test('x')
 
     else:
         raise Exception("Entry ARG exception, please raise an issue on GitHub.")
