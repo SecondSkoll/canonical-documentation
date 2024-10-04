@@ -60,7 +60,7 @@ Tests are implemented with [Nox](https://nox.thea.codes/en/stable/), and are con
 
 ## Preview
 
-Note: To be added
+Note: Minimal POC implemented - needs some Starter Pack standard packages to function on SP doc sets.
 
 The `preview` command runs `sphinx-autobuild` and provides a local preview of the documetnation set.
 
