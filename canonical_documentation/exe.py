@@ -8,6 +8,7 @@ import os
 
 from canonical_documentation.tests.main_test import run_nox
 from canonical_documentation.preview.preview import run_preview
+from canonical_documentation.config.config import write_new_config
 
 
 default_yaml = safe_load(files(defaults).joinpath('default.yaml').read_text())
@@ -55,8 +56,8 @@ def yaml():
     with open("conf.yaml", "w+") as file:
         file.write(dump(default_yaml))
 
-def config(file):
-    raise Exception("Placeholder for config function")
+def config(cwd):
+    write_new_config(cwd)
 
 def update(root):
     raise Exception("Placeholder for update function")
@@ -89,7 +90,7 @@ def entry(argv = (), /):
         yaml()
 
     elif vars(args)['arg'] == "config":
-        config()
+        config(cwd)
 
     elif vars(args)['arg'] == "update":
         update()
