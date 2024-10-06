@@ -4,7 +4,6 @@ VENV = $(VENV_DIR)/bin/activate
 venv:
 	python3 -m venv $(VENV_DIR)
 	@. $(VENV); pip install -r requirements.txt
-	@. $(VENV); pip install -r canonical_documentation/requirements.txt
 
 canonical-documentation: venv
 	@. $(VENV); python -m build

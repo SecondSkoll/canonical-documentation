@@ -66,7 +66,7 @@ def test(scope):
     run_nox()
 
 def preview(cwd):
-    run_preview(cwd)
+    preview_test(cwd)
 
 def entry(argv = (), /):
 

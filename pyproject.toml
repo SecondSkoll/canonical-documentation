@@ -5,7 +5,9 @@ dependencies = [
     "PyYAML",
     "importlib-resources",
     "nox",
-    "canonical-sphinx",
+    "canonical-sphinx[full]",
+    "sphinx-autobuild",
+    "sphinxcontrib-svg2pdfconverter[CairoSVG]",
 ]
 classifiers = [
     "Development Status :: 1 - Planning",

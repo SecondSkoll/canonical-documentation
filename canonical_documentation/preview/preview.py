@@ -1,9 +1,10 @@
 import os
-import sys
 import subprocess
-from importlib_resources import files
 
-noxfile = default_yaml = files('canonical_documentation.preview').joinpath('noxfile.py')
+# Doesn't use Nox - so no VENV is required
 
 def run_preview(cwd):
-    subprocess.run(["nox", "-f", noxfile, '--', cwd])
+    subprocess.run(["sphinx-autobuild", cwd, '.build/html'])
+
+if __name__ == '__main__':
+    preview_test()
