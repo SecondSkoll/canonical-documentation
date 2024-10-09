@@ -92,6 +92,12 @@ def preview(cwd):
 
     preview_test(cwd)
 
+def pdf(cwd):
+
+    # TODO: [Priority medium] - Move preview function to optional install
+
+    preview_test(cwd)
+
 def entry(argv = (), /):
 
     if not argv:
@@ -108,25 +114,28 @@ def entry(argv = (), /):
         interactive()
         pass
 
-    elif vars(args)['arg'] == "init":
+    if vars(args)['arg'] == "init":
         init()
 
 
-    elif vars(args)['arg'] == "yaml":
+    if vars(args)['arg'] == "yaml":
         yaml()
 
-    elif vars(args)['arg'] == "config":
+    if vars(args)['arg'] == "config":
         config(cwd)
 
-    elif vars(args)['arg'] == "update":
+    if vars(args)['arg'] == "update":
         print(args)
         update(vars(args)['directory'])
 
-    elif vars(args)['arg'] == "test":
+    if vars(args)['arg'] == "test":
         test('x')
 
-    elif vars(args)['arg'] == "preview":
+    if vars(args)['arg'] == "preview":
         preview(cwd)
+
+    if vars(args)['arg'] == "pdf":
+        pdf(cwd)
 
     else:
         raise Exception("Entry ARG exception, please raise an issue on GitHub.")

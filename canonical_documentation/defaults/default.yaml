@@ -1,9 +1,11 @@
+# Required values
 PROJECT: test project
 
+# Recommended values
 VERSION: 
 COPYWRITE: "'%s CC-BY-SA, %s' % (datetime.date.today().year, author)"
 
-OGP_SITE_URL: ""
-
+# Optional values
 ADDITIONAL_CONF:
-ADDITIONAL_IMPORTS: ""
+
+OGP_SITE_URL: ""

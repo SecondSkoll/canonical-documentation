@@ -10,8 +10,12 @@ default_config = files('canonical_documentation.defaults').joinpath('default-con
 default_latex_config = files('canonical_documentation.defaults').joinpath('default-latex-config.txt')
 
 def parse_main_config(sourcedir):
+    """Parses the supplied config file"""
 
     config = {}
+
+    # Defaults for process only valiables
+    config["ADDITIONAL_IMPORTS"] = ""
 
     config.update(default_yaml)
 
@@ -23,6 +27,7 @@ def parse_main_config(sourcedir):
     return config
 
 def template_config(sourcedir, config):
+    """Writes configuration values to the default conf.py template"""
 
     result = None
 
@@ -35,6 +40,7 @@ def template_config(sourcedir, config):
 
 
 def check_existing_config(sourcedir):
+    """Checks if a compliant conf.py exists"""
 
     if os.path.isfile(os.path.join(sourcedir, "conf.py")):
         with open(os.path.join(sourcedir, "conf.py"), 'rt') as file:
@@ -48,6 +54,7 @@ def check_existing_config(sourcedir):
     return keep
 
 def write_new_config(sourcedir):
+    """Writes a new configuration file based on the supplied YAML and any existing conf.py files"""
 
     config = parse_main_config(sourcedir)
 
