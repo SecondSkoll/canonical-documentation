@@ -22,9 +22,8 @@ def parse_main_config(sourcedir):
 
     return config
 
-def template_config(sourcedir):
+def template_config(sourcedir, config):
 
-    config = parse_main_config(sourcedir)
     result = None
 
     with open(os.path.join(sourcedir, default_config), "rt") as file:
@@ -39,7 +38,10 @@ def check_existing_config(sourcedir):
 
     if os.path.isfile(os.path.join(sourcedir, "conf.py")):
         with open(os.path.join(sourcedir, "conf.py"), 'rt') as file:
-            ignore, keep = re.split("END OF TEMPLATE SECTION", file.read(), maxsplit=1)
+            try:
+                ignore, keep = re.split("END OF TEMPLATE SECTION\n############################################################", file.read(), maxsplit=1)
+            except:
+                raise ValueError("No 'END OF TEMPLATE SECTION' delimiter found in existing config file.")
     else:
         return ""
 
@@ -47,13 +49,24 @@ def check_existing_config(sourcedir):
 
 def write_new_config(sourcedir):
 
-    result = template_config(sourcedir)
-    delimiter = "\n# END OF TEMPLATE SECTION"
+    config = parse_main_config(sourcedir)
+
+    if 'ADDITIONAL_CONF' in config and config["ADDITIONAL_CONF"] is not None:
+        with open(os.path.join(sourcedir, config["ADDITIONAL_CONF"])) as file:
+            additional_conf = file.read()
+            imports, additional_conf = re.split("END OF IMPORTS", additional_conf, maxsplit=1)
+            config["ADDITIONAL_IMPORTS"] = "# ADDITIONAL IMPORTS\n" + imports
+            additional_conf = "# ADDITIONAL CONFIG" + additional_conf
+    else:
+        additional_conf = "" 
+
+    result = template_config(sourcedir, config)
+    delimiter = "\n############################################################\n# END OF TEMPLATE SECTION\n############################################################\n"
     existing = check_existing_config(sourcedir)
 
     conffile = os.path.join(sourcedir, "conf.py")
     with open(conffile, "w+t") as file:
-        file.write(result + delimiter + existing)
+        file.write(result + "\n" + additional_conf + delimiter + existing)
 
 if __name__ == "__main__":
     cwd = os.getcwd()

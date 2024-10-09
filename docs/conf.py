@@ -1,63 +1,37 @@
 import datetime
 import ast
 
-# Configuration for the Sphinx documentation builder.
-# All configuration specific to your project should be done in this file.
-#
-# If you're new to Sphinx and don't want any advanced or custom features,
-# just go through the items marked 'TODO'.
-#
-# A complete list of built-in Sphinx configuration values:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-#
-# Our starter pack uses the custom Canonical Sphinx extension
-# to keep all documentation based on it consistent and on brand:
-# https://github.com/canonical/canonical-sphinx
+# ADDITIONAL IMPORTS
+import something
+import something_else
+
+############################################################
+# 
+
+# You should not have to edit this file. This file should be generated
+# from conf.yaml
+
+######################
+### Custom imports ###
+######################
+
+* PROJECT
+* VERSION
+* COPYWRITE
+* OGP_SITE_URL
+
 
 
 ###########################
 ### Project information ###
 ###########################
 
-# Project name
-#
-# TODO: Update with the official name of your project or product
-
-project = 'Documentation starter pack'
+project = test project
 author = 'Canonical Ltd.'
 
-
-# Sidebar documentation title; best kept reasonably short
-#
-# TODO: To include a version number, add it here (hardcoded or automated).
-#
-# TODO: To disable the title, set to an empty string.
+version = None
 
 html_title = project + ' documentation'
-
-
-# Copyright string; shown at the bottom of the page
-#
-# Now, the starter pack uses CC-BY-SA as the license
-# and the current year as the copyright year.
-#
-# TODO: If your docs need a different license, specify it instead of 'CC-BY-SA'.
-#
-# TODO: If your documentation is a part of the code repository of your project,
-#       it inherits the code license instead; specify it instead of 'CC-BY-SA'.
-#
-# NOTE: For static works, it is common to provide the year of first publication.
-#       Another option is to provide both the first year of publication
-#       and the current year, especially for docs that frequently change,
-#       e.g. 2022–2023 (note the en-dash).
-#
-#       A way to check a repo's creation date is to get a classic GitHub token
-#       with 'repo' permissions; see https://github.com/settings/tokens
-#       Next, use 'curl' and 'jq' to extract the date from the API's output:
-#
-#       curl -H 'Authorization: token <TOKEN>' \
-#         -H 'Accept: application/vnd.github.v3.raw' \
-#         https://api.github.com/repos/canonical/<REPO> | jq '.created_at'
 
 copyright = '%s CC-BY-SA, %s' % (datetime.date.today().year, author)
 
@@ -69,7 +43,7 @@ copyright = '%s CC-BY-SA, %s' % (datetime.date.today().year, author)
 # NOTE: The Open Graph Protocol (OGP) enhances page display in a social graph
 #       and is used by social media platforms; see https://ogp.me/
 
-ogp_site_url = 'https://canonical-starter-pack.readthedocs-hosted.com/'
+ogp_site_url = 
 
 
 # Preview name of the documentation website
@@ -83,7 +57,7 @@ ogp_site_name = project
 #
 # TODO: To customise the preview image, update as needed.
 
-ogp_image = 'https://assets.ubuntu.com/v1/253da317-image-document-ubuntudocs.svg'
+ogp_image = 'https://assets.ubuntu.com/v1/ce518a18-CoF-2022_solid+O.svg'
 
 
 # Product favicon; shown in bookmarks, browser tabs, etc.
@@ -336,7 +310,12 @@ with open(".sphinx/latex_elements_template.txt", "rt") as file:
 latex_elements = ast.literal_eval(latex_config.replace("test project", project))
 
 ############################################################
+# ADDITIONAL CONFIG
+############################################################
+
+def some():
+    pass
+############################################################
 # END OF TEMPLATE SECTION
 ############################################################
 
-I expect this to be kept and retained.

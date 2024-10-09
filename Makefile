@@ -1,5 +1,6 @@
 VENV_DIR = .venv
 VENV = $(VENV_DIR)/bin/activate
+TESTDIR = docs
 
 venv:
 	python3 -m venv $(VENV_DIR)
@@ -12,8 +13,7 @@ install: canonical-documentation
 	@. $(VENV); python -m pip install dist/canonical_documentation-0.1.tar.gz
 
 run: install
-	@. $(VENV); canonical-documentation yaml
-	@. $(VENV); canonical-documentation config
+	@. $(VENV); cd docs && canonical-documentation config
 
 clean:
 	rm -r $(VENV_DIR) || true

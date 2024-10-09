@@ -1,2 +1,9 @@
 PROJECT: test project
-default: default_value
+
+VERSION: 
+COPYWRITE: "'%s CC-BY-SA, %s' % (datetime.date.today().year, author)"
+
+OGP_SITE_URL: ""
+
+ADDITIONAL_CONF:
+ADDITIONAL_IMPORTS: ""

@@ -46,26 +46,50 @@ def arg_parse():
     return parser
 
 def interactive():
+
+    # TODO: [Priority low] - Develop interactive function
+
     raise Exception("Placeholder for interactive function")
 
 def init():
+
+    # TODO: [Priority medium] - Put demo docs together defining the files needed for init
+    # TODO: [Priority medium] - Develop init function
+    # TODO: [Priority low] - Options for RST/MD based docs
+
     raise Exception("Placeholder for init function")
 
 def yaml():
+
+    # TODO: [Priority medium] - Extend yaml file to all defaults
+
     print(default_yaml)
     with open("conf.yaml", "w+") as file:
         file.write(dump(default_yaml))
 
 def config(cwd):
+
+    # TODO: [Priority medium] - Move to optional conf.py addition through yaml file
+    # TODO: [Priority medium] - Split optional conf.py into logical sections for ingestion and Python validation (imports at top, etc.)
+
     write_new_config(cwd)
 
 def update(root):
+
+    # TODO: [Priority low] - Develop update function
+
     raise Exception("Placeholder for update function")
 
 def test(scope):
+
+    # TODO: [Priority high] - Develop full tests
+
     run_nox()
 
 def preview(cwd):
+
+    # TODO: [Priority medium] - Move preview function to optional install
+
     preview_test(cwd)
 
 def entry(argv = (), /):
@@ -77,6 +101,8 @@ def entry(argv = (), /):
     args = parser.parse_args(argv or sys.argv[1:])
 
     cwd = os.getcwd()
+    if os.path.isdir('.sphinx'):
+        sphinx_dir = '.sphinx/'
 
     if vars(args)['arg'] == "none":
         interactive()
@@ -93,7 +119,8 @@ def entry(argv = (), /):
         config(cwd)
 
     elif vars(args)['arg'] == "update":
-        update()
+        print(args)
+        update(vars(args)['directory'])
 
     elif vars(args)['arg'] == "test":
         test('x')
