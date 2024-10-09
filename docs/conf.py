@@ -1,12 +1,8 @@
 import datetime
 import ast
 
-# ADDITIONAL IMPORTS
 import something
 import something_else
-
-############################################################
-# 
 
 # You should not have to edit this file. This file should be generated
 # from conf.yaml
@@ -318,4 +314,5 @@ def some():
 ############################################################
 # END OF TEMPLATE SECTION
 ############################################################
+
 

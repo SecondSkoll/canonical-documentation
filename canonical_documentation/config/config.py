@@ -54,8 +54,8 @@ def write_new_config(sourcedir):
     if 'ADDITIONAL_CONF' in config and config["ADDITIONAL_CONF"] is not None:
         with open(os.path.join(sourcedir, config["ADDITIONAL_CONF"])) as file:
             additional_conf = file.read()
-            imports, additional_conf = re.split("END OF IMPORTS", additional_conf, maxsplit=1)
-            config["ADDITIONAL_IMPORTS"] = "# ADDITIONAL IMPORTS\n" + imports
+            imports, additional_conf = re.split("############################################################\n# END OF IMPORTS", additional_conf, maxsplit=1)
+            config["ADDITIONAL_IMPORTS"] = imports
             additional_conf = "# ADDITIONAL CONFIG" + additional_conf
     else:
         additional_conf = "" 
